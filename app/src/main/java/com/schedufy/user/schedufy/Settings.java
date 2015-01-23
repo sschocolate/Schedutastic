@@ -13,12 +13,12 @@ import android.view.ViewGroup;
 import android.os.Build;
 
 
-public class SchedufyHome extends ActionBarActivity {
+public class Settings extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedufy_home);
+        setContentView(R.layout.activity_settings);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
@@ -30,7 +30,7 @@ public class SchedufyHome extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_schedufy_home, menu);
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
         return true;
     }
 
@@ -49,18 +49,18 @@ public class SchedufyHome extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void SwitchToHome(MenuItem item) {
+        Intent toHomeScreen = new Intent(this, SchedufyHome.class);
+
+        startActivity(toHomeScreen);
+    }
+
     public void SwitchToCalc(MenuItem item) {
         Intent toCalendarScreen = new Intent(this, CalendarActivity.class);
 
         startActivity(toCalendarScreen);
     }
 
-    public void SwitchToSetting(MenuItem item) {
-        Intent toSettingScreen = new Intent(this, Settings.class);
-
-        startActivity(toSettingScreen);
-    }
-    // test pushing
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -72,9 +72,8 @@ public class SchedufyHome extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_schedufy_home, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
             return rootView;
         }
     }
-
 }

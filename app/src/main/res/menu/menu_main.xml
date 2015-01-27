@@ -3,8 +3,9 @@
     tools:context=".MainActivity">
 
     <item android:id="@+id/action_settings"
-        android:title="Settings"
+        android:title="@string/settings_text"
         android:orderInCategory="100"
-        android:showAsAction="ifRoom" />
+        android:showAsAction="always"
+        />
 
 </menu>

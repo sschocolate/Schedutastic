@@ -8,21 +8,13 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SchedufyHome"
-            android:label="@string/app_name" >
+            android:name=".MainActivity"
+            android:label="Schedufy" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".CalendarActivity"
-            android:label="@string/title_activity_calendar" >
-        </activity>
-        <activity
-            android:name=".Settings"
-            android:label="@string/title_activity_settings" >
         </activity>
     </application>
 

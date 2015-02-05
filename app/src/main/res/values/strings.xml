@@ -13,5 +13,6 @@
     <string name="settings_text">Settings</string>
     <string name="setting_back_to_home">Done</string>
     <string name="Events_Label">Week of ...</string>
+    <string name="addSign">+</string>
 
 </resources>

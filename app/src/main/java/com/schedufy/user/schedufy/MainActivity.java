@@ -3,6 +3,9 @@ package com.schedufy.user.schedufy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -51,5 +54,12 @@ public class MainActivity extends SherlockFragmentActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void addEvent_home(View view) {
+        String[] gg = {"Hello", "World", "Welcome", "To", "Hell"};
+        ListView list = (ListView)findViewById(R.id.listView1);
+        ArrayAdapter<String> ListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, gg);
+        list.setAdapter(ListAdapter);
     }
 }

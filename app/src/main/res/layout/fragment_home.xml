@@ -4,26 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="480dp"
+        android:id="@+id/listView1"
+        />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="41dp"
-            android:gravity="center"
-            android:text="THIS IS MY SWAMP NOW!" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="41dp"
-            android:gravity="center"
-            android:text="THIS IS MY SWAMP NOW!" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="41dp"
-            android:gravity="center"
-            android:text="THIS IS MY SWAMP NOW!" />
-    </LinearLayout>
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/addSign"
+        android:id="@+id/addEvent_home"
+        android:layout_gravity="center_horizontal"
+        android:singleLine="true"
+        android:onClick="addEvent_home" />
 </LinearLayout>

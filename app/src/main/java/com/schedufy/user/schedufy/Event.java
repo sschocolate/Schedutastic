@@ -1,21 +1,17 @@
 package com.schedufy.user.schedufy;
 
-import android.text.format.Time;
-
-import java.util.Date;
-
 public class Event {
 
     private String _category;
-    private Date _date;
-    private Time _time;
+    private String _date;
+    private String _time;
     private String _description;
 
     public Event() {}
 
     public Event(String category,
-                 Date date,
-                 Time time,
+                 String date,
+                 String time,
                  String description) {
         this._category = category;
         this._date = date;
@@ -31,19 +27,19 @@ public class Event {
         this._category = category;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return this._date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this._date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return this._time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this._time = time;
     }
 

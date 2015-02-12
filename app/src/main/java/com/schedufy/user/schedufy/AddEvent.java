@@ -2,6 +2,7 @@ package com.schedufy.user.schedufy;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,7 +20,8 @@ import java.util.Locale;
 
 public class AddEvent extends Activity {
 
-    Calendar mCurrentDate;
+    private Calendar mCurrentDate;
+    private Calendar mCurrentTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,7 @@ public class AddEvent extends Activity {
 
         mDatePickerDialog = new DatePickerDialog(AddEvent.this, new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                 mCurrentDate.set(Calendar.YEAR, year);
                 mCurrentDate.set(Calendar.MONTH, monthOfYear);
                 mCurrentDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -71,6 +73,25 @@ public class AddEvent extends Activity {
         mDatePickerDialog.show();
     }
 
+    public void timePickerClick(View v) {
+        TimePickerDialog mTimePickerDialog;
+
+        mCurrentTime = Calendar.getInstance();
+        int mHour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
+        int mMinute = mCurrentTime.get(Calendar.MINUTE);
+
+        mTimePickerDialog = new TimePickerDialog(AddEvent.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                mCurrentTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                mCurrentTime.set(Calendar.MINUTE, minute);
+                updateTimeLabel();
+            }
+        }, mHour, mMinute, true);
+
+        mTimePickerDialog.show();
+    }
+
     private void updateDateLabel() {
         EditText date = (EditText) findViewById(R.id.editTextDate);
         String format = "MM/dd/yy";
@@ -78,19 +99,24 @@ public class AddEvent extends Activity {
         date.setText(dateFormat.format(mCurrentDate.getTime()));
     }
 
+    private void updateTimeLabel() {
+        EditText time = (EditText) findViewById(R.id.editTextTime);
+        String format = "HH:mm";
+        SimpleDateFormat timeFormat = new SimpleDateFormat(format, Locale.CANADA);
+        time.setText(timeFormat.format(mCurrentTime.getTime()));
+    }
+
     public void addingEvent(View v) {
         Intent returnIntent = new Intent();
 
         EditText category    = (EditText) findViewById(R.id.editTextCategory);
         EditText date        = (EditText) findViewById(R.id.editTextDate);
-        TimePicker time      = (TimePicker) findViewById(R.id.timePicker);
-        //EditText time        = (EditText) findViewById(R.id.editTextTime);
+        EditText time        = (EditText) findViewById(R.id.editTextTime);
         EditText description = (EditText) findViewById(R.id.editTextDescription);
 
         String returnCategory    = category.getText().toString();
         String returnDate        = date.getText().toString();
-        String returnTime        = time.getCurrentHour().toString()
-                                   + ":" + time.getCurrentMinute().toString();
+        String returnTime        = time.getText().toString();
         String returnDescription = description.getText().toString();
 
         Toast.makeText(getApplication(), R.string.event_added, Toast.LENGTH_LONG).show();

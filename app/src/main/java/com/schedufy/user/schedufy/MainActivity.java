@@ -117,6 +117,11 @@ public class MainActivity extends SherlockFragmentActivity {
      * @param v
      */
     public void test(View v) {
-        Toast.makeText(this, category + date + time + description, Toast.LENGTH_LONG).show();
+        Toast.makeText(this,
+                       "Category: " + category +
+                       " Date: " + date +
+                       " Time: " + time +
+                       " Description: " + description,
+                       Toast.LENGTH_LONG).show();
     }
 }

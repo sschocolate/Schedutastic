@@ -7,7 +7,11 @@ import android.view.ViewGroup;
 import com.actionbarsherlock.app.SherlockFragment;
 
 public class EventsFragment extends SherlockFragment {
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_events, container, false);
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_events,
+                                container,
+                                false);
     }
 }

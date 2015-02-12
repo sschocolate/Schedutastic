@@ -17,5 +17,5 @@
         android:id="@+id/addEvent_home"
         android:layout_gravity="center_horizontal"
         android:singleLine="true"
-        android:onClick="addEvent_home" />
+        android:onClick="toAddEvent" />
 </LinearLayout>

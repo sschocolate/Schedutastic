@@ -16,8 +16,8 @@ public class MainActivity extends SherlockFragmentActivity {
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
     private String category;
-    //private Data date;
-    //private Time time;
+    private String date;
+    private String time;
     private String description;
 
     /**
@@ -88,6 +88,14 @@ public class MainActivity extends SherlockFragmentActivity {
             category = data.getStringExtra("category");
         }
 
+        if(data.getExtras().containsKey("date")) {
+            date = data.getStringExtra(("date"));
+        }
+
+        if(data.getExtras().containsKey("time")) {
+            time = data.getStringExtra("time");
+        }
+
         if(data.getExtras().containsKey("description")) {
             description = data.getStringExtra("description");
         }
@@ -109,6 +117,6 @@ public class MainActivity extends SherlockFragmentActivity {
      * @param v
      */
     public void test(View v) {
-        Toast.makeText(this, category + " " + description, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, category + date + time + description, Toast.LENGTH_LONG).show();
     }
 }

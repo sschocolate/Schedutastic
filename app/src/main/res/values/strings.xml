@@ -22,5 +22,9 @@
     <string name="edittext_description_string">Description...</string>
     <string name="add_event_string">Add Event</string>
     <string name="event_added">Event Added</string>
+    <string name="category">category</string>
+    <string name="date">date</string>
+    <string name="time">time</string>
+    <string name="description">description</string>
 
 </resources>

@@ -21,7 +21,7 @@
             android:label="@string/title_activity_schedufy_settings" >
         </activity>
         <activity
-            android:name=".AddEvent"
+            android:name=".Event"
             android:label="@string/title_activity_add_event" >
         </activity>
     </application>

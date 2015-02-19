@@ -15,7 +15,7 @@ import com.actionbarsherlock.view.MenuItem;
 public class MainActivity extends SherlockFragmentActivity {
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
-    private EventDatabaseAdapter mEventDatabaseAdapter;
+    private EventDatabaseAdapter mEventHelper;
     private String category;
     private String date;
     private String time;
@@ -44,7 +44,7 @@ public class MainActivity extends SherlockFragmentActivity {
         mTabsAdapter.addTab(bar.newTab().setText(R.string.calendar), CalendarFragment.class, null);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.events), EventsFragment.class, null);
 
-        mEventDatabaseAdapter = new EventDatabaseAdapter(this);
+        mEventHelper = new EventDatabaseAdapter(this);
     }
 
     /**
@@ -119,4 +119,9 @@ public class MainActivity extends SherlockFragmentActivity {
      * DELETE THIS.
      * @param v
      */
+    public void displayAllEvents(View v)
+    {
+        String events = mEventHelper.getAllEvents();
+        Toast.makeText(getApplication(), events, Toast.LENGTH_LONG).show();
+    }
 }

@@ -130,6 +130,10 @@ public class Event extends Activity {
             Toast.makeText(getApplication(), EVENT_NOT_ADDED, Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getApplication(), EVENT_ADDED, Toast.LENGTH_LONG).show();
+            editCategory.setText("");
+            editDate.setText("");
+            editTime.setText("");
+            editDescription.setText("");
         }
     }
 

@@ -2,6 +2,7 @@ package com.schedufy.user.schedufy;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -25,6 +26,26 @@ public class EventDatabaseAdapter {
         long id = db.insert(EventHelper.TABLE_NAME, null, contentValues);
 
         return id;
+    }
+
+    public String getAllEvents() {
+        SQLiteDatabase db = helper.getWritableDatabase();
+        String[] columns = {EventHelper.UID, EventHelper.CATEGORY, EventHelper.DATE, EventHelper.TIME, EventHelper.DESCRIPTION};
+        Cursor cursor = db.query(EventHelper.TABLE_NAME, columns, null, null, null, null, null);
+        StringBuffer buffer = new StringBuffer();
+
+        while(cursor.moveToNext())
+        {
+            int cid = cursor.getInt(0);
+            String category = cursor.getString(1);
+            String date = cursor.getString(2);
+            String time = cursor.getString(3);
+            String description = cursor.getString(4);
+
+            buffer.append(cid + " " + category + " " + date + " " + time + " " + description + "\n");
+        }
+
+        return buffer.toString();
     }
 
     static class EventHelper extends SQLiteOpenHelper {

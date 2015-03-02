@@ -2,5 +2,6 @@
 <resources>
 
     <color name="schedufy_red">#DC3737</color>
+    <color name="schedufy_white">#FFFFFF</color>
 
 </resources>

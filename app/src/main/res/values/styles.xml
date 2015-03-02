@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
     <style name="AppTheme" style="theme.holo">
@@ -7,9 +7,13 @@
     </style>
 
     <style name="button" parent="@android:style/Widget.Button">
-        <item name="android:background">#00FF00</item>
-        <item name="android:textSize">50sp</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:background">@drawable/buttonstyle</item>
+        <item name="android:textSize">@dimen/button_textSize</item>
+        <item name="android:textColor">@color/schedufy_white</item>
+        <item name="android:paddingTop">@dimen/button_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/button_padding_vertical</item>
+        <item name="android:paddingRight">@dimen/button_padding_horizontal</item>
+        <item name="android:paddingLeft">@dimen/button_padding_horizontal</item>
     </style>
 
 </resources>

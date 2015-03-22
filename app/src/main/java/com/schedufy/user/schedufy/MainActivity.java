@@ -1,9 +1,13 @@
 package com.schedufy.user.schedufy;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -16,10 +20,12 @@ public class MainActivity extends SherlockFragmentActivity {
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
     private EventDatabaseAdapter mEventHelper;
+    private ListView list;
     private String category;
     private String date;
     private String time;
     private String description;
+    static Context context;
 
     /**
      * Creates navigational structure of the application.
@@ -28,6 +34,8 @@ public class MainActivity extends SherlockFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        context = getApplicationContext();
 
         mViewPager = new ViewPager(this);
         mViewPager.setId(R.id.pager);
@@ -119,8 +127,7 @@ public class MainActivity extends SherlockFragmentActivity {
      * DELETE THIS.
      * @param v
      */
-    public void displayAllEvents(View v)
-    {
+    public void displayAllEvents(View v) {
         String events = mEventHelper.getAllEvents();
         Toast.makeText(getApplication(), events, Toast.LENGTH_LONG).show();
     }

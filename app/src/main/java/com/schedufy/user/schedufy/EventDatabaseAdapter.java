@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.SQLException;
-
 public class EventDatabaseAdapter extends SQLiteOpenHelper {
     public SQLiteDatabase db;
 
@@ -51,26 +49,6 @@ public class EventDatabaseAdapter extends SQLiteOpenHelper {
         long id = db.insert(TABLE_NAME, null, contentValues);
 
         return id;
-    }
-
-    public String getAllEvents() {
-        db = getWritableDatabase();
-        String[] columns = {COL_UID, COL_CATEGORY, COL_DATE, COL_TIME, COL_DESCRIPTION};
-        Cursor cursor = db.query(TABLE_NAME, columns, null, null, null, null, null);
-        StringBuffer buffer = new StringBuffer();
-
-        while(cursor.moveToNext())
-        {
-            int cid = cursor.getInt(0);
-            String category = cursor.getString(1);
-            String date = cursor.getString(2);
-            String time = cursor.getString(3);
-            String description = cursor.getString(4);
-
-            buffer.append(cid + " " + category + " " + date + " " + time + " " + description + "\n");
-        }
-
-        return buffer.toString();
     }
 
     public Cursor getAllRows() {

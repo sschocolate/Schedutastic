@@ -39,7 +39,7 @@ public class HomeFragment extends ListFragment {
             getActivity(),
             R.layout.list_item,
             dbCursor,
-            new String[]{dbAdapter.COL_UID, dbAdapter.COL_CATEGORY, dbAdapter.COL_DATE, dbAdapter.COL_TIME, dbAdapter.COL_DESCRIPTION},
+            new String[]{EventDatabaseAdapter.COL_UID, EventDatabaseAdapter.COL_CATEGORY, EventDatabaseAdapter.COL_DATE, EventDatabaseAdapter.COL_TIME, EventDatabaseAdapter.COL_DESCRIPTION},
             new int[]{R.id.list_uid, R.id.list_category, R.id.list_date, R.id.list_time, R.id.list_description},
             0
         );

@@ -121,14 +121,4 @@ public class MainActivity extends SherlockFragmentActivity {
         Intent i = new Intent(this, Event.class);
         startActivity(i);
     }
-
-    /**
-     * TESTING ADD EVENTS.
-     * DELETE THIS.
-     * @param v
-     */
-    public void displayAllEvents(View v) {
-        String events = mEventHelper.getAllEvents();
-        Toast.makeText(getApplication(), events, Toast.LENGTH_LONG).show();
-    }
 }

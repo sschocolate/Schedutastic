@@ -6,7 +6,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="category"
+        android:text="@string/string_category"
         android:id="@+id/list_category"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="date"
+        android:text="@string/string_date"
         android:id="@+id/list_date"
         android:layout_alignBottom="@+id/list_category"
         android:layout_centerHorizontal="true" />
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="time"
+        android:text="@string/string_time"
         android:id="@+id/list_time"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="description"
+        android:text="@string/string_description"
         android:id="@+id/list_description"
         android:layout_below="@+id/list_category"
         android:layout_alignParentStart="true" />
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="uid"
+        android:text="@string/string_uid"
         android:id="@+id/list_uid"
         android:layout_alignTop="@+id/list_description"
         android:layout_alignParentEnd="true" />

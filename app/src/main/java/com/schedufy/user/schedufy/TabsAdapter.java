@@ -17,7 +17,7 @@ public class TabsAdapter extends FragmentPagerAdapter implements ActionBar.TabLi
     private final Context mContext;
     private final ActionBar mActionBar;
     private final ViewPager mViewPager;
-    private final ArrayList<TabInfo> mTabs = new ArrayList<TabInfo>();
+    private final ArrayList<TabInfo> mTabs = new ArrayList<>();
     private final String TAG = "21st Polling";
 
     static final class TabInfo {

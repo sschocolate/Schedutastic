@@ -14,7 +14,7 @@
     <string name="settings_text">Settings</string>
     <string name="setting_back_to_home">Done</string>
     <string name="Events_Label">Week of …</string>
-    <string name="addSign">+</string>
+    <string name="addSign">Add new event</string>
     <string name="title_activity_add_event">AddEvent</string>
     <string name="edittext_category_string">Category…</string>
     <string name="edittext_date_string">Date…</string>

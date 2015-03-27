@@ -8,8 +8,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -57,9 +60,8 @@ public class HomeFragment extends ListFragment {
             }
         };
 
-        setList(view);
         list.setOnTouchListener(mGestureListener);
-
+        setList(view);
         return view;
     }
 
@@ -116,5 +118,15 @@ public class HomeFragment extends ListFragment {
         );
 
         list.setAdapter(mCursorAdapter);
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id){
+        String s = String.valueOf(id);
+        Toast toast = Toast.makeText(getActivity(), s, Toast.LENGTH_LONG);
+        LinearLayout toastLayout = (LinearLayout) toast.getView();
+        TextView toastTV = (TextView) toastLayout.getChildAt(0);
+        toastTV.setTextSize(30);
+        toast.show();
     }
 }

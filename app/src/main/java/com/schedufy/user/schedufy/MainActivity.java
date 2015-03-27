@@ -50,7 +50,7 @@ public class MainActivity extends SherlockFragmentActivity {
         mTabsAdapter = new TabsAdapter(this, mViewPager);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.home), HomeFragment.class, null);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.calendar), CalendarFragment.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText(R.string.events), EventsFragment.class, null);
+        //mTabsAdapter.addTab(bar.newTab().setText(R.string.events), EventsFragment.class, null);
 
         mEventHelper = new EventDatabaseAdapter(this);
     }

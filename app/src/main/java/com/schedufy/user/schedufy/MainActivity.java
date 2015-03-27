@@ -79,7 +79,7 @@ public class MainActivity extends SherlockFragmentActivity {
      * @param requestCode
      * @param resultCode
      * @param data
-     */
+     */ /*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -100,7 +100,7 @@ public class MainActivity extends SherlockFragmentActivity {
             String description = data.getStringExtra("description");
         }
     }
-
+*/
     /**
      * Switches to the AddEvent activity using an Intent.
      * startActivityForResult gets data back to this activity.

@@ -17,11 +17,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Schedufy_settings"
+            android:name=".SettingsActivity"
             android:label="@string/title_activity_schedufy_settings">
         </activity>
         <activity
-            android:name=".Event"
+            android:name=".AddEventActivity"
             android:label="@string/title_activity_add_event" >
         </activity>
     </application>

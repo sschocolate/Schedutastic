@@ -16,34 +16,46 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+/**
+ * A user can enter data into fields. This data will be inserted into the database.
+ */
+public class AddEventActivity extends Activity {
 
-public class Event extends Activity {
-
+    // Constant strings
     private static final String EVENT_ADDED = "Event Added!";
     private static final String EVENT_NOT_ADDED = "Error!";
 
+    // Instance members
     private Calendar mCurrentDate;
     private Calendar mCurrentTime;
-    private EditText editCategory;
-    private EditText editDate;
-    private EditText editTime;
-    private EditText editDescription;
-    private EventDatabaseAdapter mEventHelper;
+    private EditText mEditCategory;
+    private EditText mEditDate;
+    private EditText mEditTime;
+    private EditText mEditDescription;
+    private EventDatabase mEventHelper;
 
+    /**
+     * Sets the instance members for the four fields and the database.
+     * @param savedInstanceState Application state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event);
+        setContentView(R.layout.activity_add_event);
 
-        editCategory    = (EditText) findViewById(R.id.editTextCategory);
-        editDate        = (EditText) findViewById(R.id.editTextDate);
-        editTime        = (EditText) findViewById(R.id.editTextTime);
-        editDescription = (EditText) findViewById(R.id.editTextDescription);
+        mEditCategory = (EditText) findViewById(R.id.editTextCategory);
+        mEditDate = (EditText) findViewById(R.id.editTextDate);
+        mEditTime = (EditText) findViewById(R.id.editTextTime);
+        mEditDescription = (EditText) findViewById(R.id.editTextDescription);
 
-        mEventHelper = new EventDatabaseAdapter(this);
+        mEventHelper = new EventDatabase(this);
     }
 
-
+    /**
+     * Inflates the menu.
+     * @param menu Options menu.
+     * @return True when the menu is inflated.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -51,6 +63,11 @@ public class Event extends Activity {
         return true;
     }
 
+    /**
+     * Handles clicks on the menu.
+     * @param item The item on the menu.
+     * @return True when item clicked is a menu item.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -66,6 +83,10 @@ public class Event extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Bring up a date picker when user clicks the date field.
+     * @param v The view
+     */
     public void datePickerClick(View v) {
         DatePickerDialog mDatePickerDialog;
 
@@ -74,7 +95,7 @@ public class Event extends Activity {
         int mMonth = mCurrentDate.get(Calendar.MONTH);
         int mDay = mCurrentDate.get(Calendar.DAY_OF_MONTH);
 
-        mDatePickerDialog = new DatePickerDialog(Event.this, new DatePickerDialog.OnDateSetListener() {
+        mDatePickerDialog = new DatePickerDialog(AddEventActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                 mCurrentDate.set(Calendar.YEAR, year);
@@ -87,6 +108,10 @@ public class Event extends Activity {
         mDatePickerDialog.show();
     }
 
+    /**
+     * Brings up a time picker when user clicks the time field.
+     * @param v
+     */
     public void timePickerClick(View v) {
         TimePickerDialog mTimePickerDialog;
 
@@ -94,7 +119,7 @@ public class Event extends Activity {
         int mHour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
         int mMinute = mCurrentTime.get(Calendar.MINUTE);
 
-        mTimePickerDialog = new TimePickerDialog(Event.this, new TimePickerDialog.OnTimeSetListener() {
+        mTimePickerDialog = new TimePickerDialog(AddEventActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                 mCurrentTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
@@ -106,6 +131,9 @@ public class Event extends Activity {
         mTimePickerDialog.show();
     }
 
+    /**
+     * Sets the format for the date entry.
+     */
     private void updateDateLabel() {
         EditText date = (EditText) findViewById(R.id.editTextDate);
         String format = "MM/dd/yy";
@@ -113,6 +141,9 @@ public class Event extends Activity {
         date.setText(dateFormat.format(mCurrentDate.getTime()));
     }
 
+    /**
+     * Sets the format for the time entry.
+     */
     private void updateTimeLabel() {
         EditText time = (EditText) findViewById(R.id.editTextTime);
         String format = "HH:mm";
@@ -120,23 +151,31 @@ public class Event extends Activity {
         time.setText(timeFormat.format(mCurrentTime.getTime()));
     }
 
+    /**
+     * Pulls strings out of EditText fields and puts them into one database record.
+     * @param v
+     */
     public void addEventToDatabase(View v) {
-        String category = editCategory.getText().toString();
-        String date = editDate.getText().toString();
-        String time = editTime.getText().toString();
-        String description = editDescription.getText().toString();
+        String category = mEditCategory.getText().toString();
+        String date = mEditDate.getText().toString();
+        String time = mEditTime.getText().toString();
+        String description = mEditDescription.getText().toString();
 
-        if(mEventHelper.insertEvent(category, date, time, description) < 0) {
+        if (mEventHelper.insertEvent(category, date, time, description) < 0) {
             Toast.makeText(getApplication(), EVENT_NOT_ADDED, Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getApplication(), EVENT_ADDED, Toast.LENGTH_LONG).show();
-            editCategory.setText("");
-            editDate.setText("");
-            editTime.setText("");
-            editDescription.setText("");
+            mEditCategory.setText("");
+            mEditDate.setText("");
+            mEditTime.setText("");
+            mEditDescription.setText("");
         }
     }
 
+    /**
+     * Return to the previous activity.
+     * @param v
+     */
     public void leaveEvent(View v) {
         finish();
     }

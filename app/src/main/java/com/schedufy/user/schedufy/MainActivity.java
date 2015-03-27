@@ -2,13 +2,10 @@ package com.schedufy.user.schedufy;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -17,14 +14,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 public class MainActivity extends SherlockFragmentActivity {
-    private ViewPager mViewPager;
-    private TabsAdapter mTabsAdapter;
-    private EventDatabaseAdapter mEventHelper;
     private ListView list;
-    private String category;
-    private String date;
-    private String time;
-    private String description;
     static Context context;
 
     /**
@@ -37,7 +27,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
         context = getApplicationContext();
 
-        mViewPager = new ViewPager(this);
+        ViewPager mViewPager = new ViewPager(this);
         mViewPager.setId(R.id.pager);
         setContentView(mViewPager);
 
@@ -47,12 +37,11 @@ public class MainActivity extends SherlockFragmentActivity {
         bar.setStackedBackgroundDrawable(getResources().getDrawable(R.color.schedufy_red));
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        mTabsAdapter = new TabsAdapter(this, mViewPager);
+        TabsAdapter mTabsAdapter = new TabsAdapter(this, mViewPager);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.home), HomeFragment.class, null);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.calendar), CalendarFragment.class, null);
-        //mTabsAdapter.addTab(bar.newTab().setText(R.string.events), EventsFragment.class, null);
 
-        mEventHelper = new EventDatabaseAdapter(this);
+        EventDatabase mEventHelper = new EventDatabase(this);
     }
 
     /**
@@ -76,7 +65,7 @@ public class MainActivity extends SherlockFragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent intent = new Intent(this, Schedufy_settings.class);
+                Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
             default:
@@ -96,19 +85,19 @@ public class MainActivity extends SherlockFragmentActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(data.getExtras().containsKey("category")) {
-            category = data.getStringExtra("category");
+            String category = data.getStringExtra("category");
         }
 
         if(data.getExtras().containsKey("date")) {
-            date = data.getStringExtra(("date"));
+            String date = data.getStringExtra(("date"));
         }
 
         if(data.getExtras().containsKey("time")) {
-            time = data.getStringExtra("time");
+            String time = data.getStringExtra("time");
         }
 
         if(data.getExtras().containsKey("description")) {
-            description = data.getStringExtra("description");
+            String description = data.getStringExtra("description");
         }
     }
 
@@ -118,7 +107,7 @@ public class MainActivity extends SherlockFragmentActivity {
      * @param view
      */
     public void toAddEvent(View view) {
-        Intent i = new Intent(this, Event.class);
+        Intent i = new Intent(this, AddEventActivity.class);
         startActivity(i);
     }
 }

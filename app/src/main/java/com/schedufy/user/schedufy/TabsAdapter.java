@@ -18,7 +18,6 @@ public class TabsAdapter extends FragmentPagerAdapter implements ActionBar.TabLi
     private final ActionBar mActionBar;
     private final ViewPager mViewPager;
     private final ArrayList<TabInfo> mTabs = new ArrayList<>();
-    private final String TAG = "21st Polling";
 
     static final class TabInfo {
         private final Class<?> clss;
@@ -40,7 +39,7 @@ public class TabsAdapter extends FragmentPagerAdapter implements ActionBar.TabLi
     }
 
     public void addTab(ActionBar.Tab tab, Class<?> clss, Bundle args) {
-        TabInfo info = new TabInfo(clss, args);
+        TabInfo info = new TabInfo(clss, null);
         tab.setTag(info);
         tab.setTabListener(this);
         mTabs.add(info);
@@ -66,6 +65,7 @@ public class TabsAdapter extends FragmentPagerAdapter implements ActionBar.TabLi
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft) {
         mViewPager.setCurrentItem(tab.getPosition());
+        String TAG = "TabsAdapterTag";
         Log.v(TAG, "clicked");
         Object tag = tab.getTag();
         for(int i = 0; i < mTabs.size(); i++) {

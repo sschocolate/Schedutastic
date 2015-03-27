@@ -8,12 +8,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class Schedufy_settings extends Activity {
+public class SettingsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedufy_settings);
+        setContentView(R.layout.activity_settings);
     }
 
 

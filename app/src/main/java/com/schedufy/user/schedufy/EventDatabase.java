@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Database adapter class: manages database.
  */
-public class EventDatabaseAdapter extends SQLiteOpenHelper {
+public class EventDatabase extends SQLiteOpenHelper {
     public SQLiteDatabase db;
 
     // Database details
@@ -32,7 +32,7 @@ public class EventDatabaseAdapter extends SQLiteOpenHelper {
      * Constructor: calls base class SQLiteOpenHelper constructor
      * @param context
      */
-    public EventDatabaseAdapter(Context context) {
+    public EventDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -74,17 +74,16 @@ public class EventDatabaseAdapter extends SQLiteOpenHelper {
         contentValues.put(COL_TIME, time);
         contentValues.put(COL_DESCRIPTION, description);
 
-        long id = db.insert(TABLE_NAME, null, contentValues);
-
-        return id;
+        return db.insert(TABLE_NAME, null, contentValues);
     }
 
     /**
      * Removes a record (an event) from the database.
-     * @param uid
+     * @param id
      */
-    public void removeEvent(String uid) {
+    public void removeEvent(int id) {
         db = getWritableDatabase();
+
     }
 
     /**

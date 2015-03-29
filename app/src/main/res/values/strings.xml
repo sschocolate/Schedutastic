@@ -21,5 +21,6 @@
     <string name="string_time">time</string>
     <string name="string_description">description</string>
     <string name="string_uid">uid</string>
+    <string name="string_row">row</string>
 
 </resources>

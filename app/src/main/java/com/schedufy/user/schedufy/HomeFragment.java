@@ -64,7 +64,7 @@ public class HomeFragment extends ListFragment {
                 R.layout.list_item,
                 mDbCursor,
                 new String[]{EventDatabase.COL_UID, EventDatabase.COL_CATEGORY, EventDatabase.COL_DATE, EventDatabase.COL_TIME, EventDatabase.COL_DESCRIPTION},
-                new int[]{R.id.list_uid, R.id.list_category, R.id.list_date, R.id.list_time, R.id.list_description},
+                new int[]{R.id.list_row, R.id.list_category, R.id.list_date, R.id.list_time, R.id.list_description},
                 0
         );
 
@@ -73,6 +73,7 @@ public class HomeFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id){
-
+        mDbAdapter.removeEvent(id);
+        onResume();
     }
 }

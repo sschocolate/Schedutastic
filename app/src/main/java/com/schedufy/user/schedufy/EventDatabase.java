@@ -19,13 +19,14 @@ public class EventDatabase extends SQLiteOpenHelper {
 
     // Database columns
     public static final String COL_UID = "_id";
+    public static final String COL_ROW = "Row";
     public static final String COL_CATEGORY = "Category";
     public static final String COL_DATE = "Date";
     public static final String COL_TIME = "Time";
     public static final String COL_DESCRIPTION = "Description";
 
     // SQL commands
-    private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + COL_UID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_CATEGORY + " VARCHAR(255), " + COL_DATE + " VARCHAR(255), " + COL_TIME + " VARCHAR(255), " + COL_DESCRIPTION + " VARCHAR(255));";
+    private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + COL_UID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_ROW + " INTEGER, " + COL_CATEGORY + " VARCHAR(255), " + COL_DATE + " VARCHAR(255), " + COL_TIME + " VARCHAR(255), " + COL_DESCRIPTION + " VARCHAR(255));";
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
     /**
@@ -81,9 +82,11 @@ public class EventDatabase extends SQLiteOpenHelper {
      * Removes a record (an event) from the database.
      * @param id
      */
-    public void removeEvent(int id) {
+    public void removeEvent(long id) {
         db = getWritableDatabase();
 
+        db.delete(TABLE_NAME, COL_UID + "=" + id, null);
+        db.execSQL("UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE NAME = '" + TABLE_NAME + "'");
     }
 
     /**
@@ -92,7 +95,7 @@ public class EventDatabase extends SQLiteOpenHelper {
      */
     public Cursor getAllRows() {
         db = getWritableDatabase();
-        String columns[] = {COL_UID, COL_CATEGORY, COL_DATE, COL_TIME, COL_DESCRIPTION};
+        String columns[] = {COL_UID, COL_CATEGORY, COL_ROW, COL_DATE, COL_TIME, COL_DESCRIPTION};
         Cursor cursor = db.query(TABLE_NAME, columns, null, null, null, null, null);
         if(cursor != null) {
             cursor.moveToFirst();

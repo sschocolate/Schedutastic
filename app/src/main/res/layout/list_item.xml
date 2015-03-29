@@ -6,8 +6,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/string_uid"
-        android:id="@+id/list_uid"
+        android:text="@string/string_row"
+        android:id="@+id/list_row"
         android:textSize="50sp"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />

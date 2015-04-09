@@ -3,6 +3,7 @@ package com.schedufy.user.schedufy;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +34,7 @@ public class AddEventActivity extends Activity {
     private EditText mEditTime;
     private EditText mEditDescription;
     private EventDatabase mEventHelper;
+    private String dateFromCalendar;
 
     /**
      * Sets the instance members for the four fields and the database.
@@ -47,6 +49,16 @@ public class AddEventActivity extends Activity {
         mEditDate = (EditText) findViewById(R.id.editTextDate);
         mEditTime = (EditText) findViewById(R.id.editTextTime);
         mEditDescription = (EditText) findViewById(R.id.editTextDescription);
+
+        Bundle extras = getIntent().getExtras();
+
+        // Checks to see if a date was passed from the CalendarView, if so, put it in the date
+        // field.
+        if(extras != null)
+        {
+            dateFromCalendar = extras.getString("DateFromCalendar");
+            mEditDate.setText(dateFromCalendar);
+        }
 
         mEventHelper = new EventDatabase(this);
     }

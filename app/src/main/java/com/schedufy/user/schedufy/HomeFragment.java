@@ -71,6 +71,13 @@ public class HomeFragment extends ListFragment {
         list.setAdapter(mCursorAdapter);
     }
 
+    /**
+     * Remove the the ListView item and it's corresponding record in the database.
+     * @param l the list to search
+     * @param v the view
+     * @param position the position in the ListView
+     * @param id the ID of the ListView item
+     */
     @Override
     public void onListItemClick(ListView l, View v, int position, long id){
         mDbAdapter.removeEvent(id);

@@ -89,6 +89,17 @@ public class EventDatabase extends SQLiteOpenHelper {
         db.execSQL("UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE NAME = '" + TABLE_NAME + "'");
     }
 
+    public Cursor getRowWithId(long id) {
+        db = getWritableDatabase();
+        String columns[] = {COL_UID, COL_DESCRIPTION};
+        String selection[] = {String.valueOf(id)};
+        Cursor cursor = db.query(TABLE_NAME, columns, "_id=?", selection, null, null, null);
+        if(cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+    }
+
     /**
      * Retrieves all the records in the database.
      * @return Records stored in a cursor

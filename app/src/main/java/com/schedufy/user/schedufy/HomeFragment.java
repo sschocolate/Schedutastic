@@ -3,11 +3,16 @@ package com.schedufy.user.schedufy;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 /**
  * A ListView of database items.
@@ -40,7 +45,42 @@ public class HomeFragment extends ListFragment {
         list = (ListView) view.findViewById(android.R.id.list);
 
         setList(view);
+        registerForContextMenu(list);
+
         return view;
+    }
+
+    /**
+     * Creates a context menu.
+     * @param menu
+     * @param v
+     * @param menuInfo
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("What would you like to do?");
+        menu.add(0, v.getId(), 0, "Edit");
+        menu.add(0, v.getId(), 0, "Delete");
+    }
+
+    /**
+     * A context menu to handle long item clicks
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        if(item.getTitle().equals("Edit")) {
+            Toast.makeText(getActivity(), "EDIT EVENT DATA", Toast.LENGTH_SHORT).show();
+        } else if(item.getTitle().equals("Delete")) {
+            mDbAdapter.removeEvent(info.id);
+            onResume();
+            Toast.makeText(getActivity(), "Deleted!", Toast.LENGTH_SHORT).show();
+        }
+
+        return super.onContextItemSelected(item);
     }
 
     /**
@@ -64,7 +104,7 @@ public class HomeFragment extends ListFragment {
                 R.layout.list_item,
                 mDbCursor,
                 new String[]{EventDatabase.COL_UID, EventDatabase.COL_CATEGORY, EventDatabase.COL_DATE, EventDatabase.COL_TIME, EventDatabase.COL_DESCRIPTION},
-                new int[]{R.id.list_row, R.id.list_category, R.id.list_date, R.id.list_time, R.id.list_description},
+                new int[]{R.id.list_row, R.id.list_category, R.id.list_date, R.id.list_time},//, R.id.list_description},
                 0
         );
 
@@ -72,7 +112,7 @@ public class HomeFragment extends ListFragment {
     }
 
     /**
-     * Remove the the ListView item and it's corresponding record in the database.
+     * Displays a description of the item (toast).
      * @param l the list to search
      * @param v the view
      * @param position the position in the ListView
@@ -80,7 +120,8 @@ public class HomeFragment extends ListFragment {
      */
     @Override
     public void onListItemClick(ListView l, View v, int position, long id){
-        mDbAdapter.removeEvent(id);
-        onResume();
+        Cursor c = mDbAdapter.getRowWithId(id);
+        String desc = c.getString(c.getColumnIndex(EventDatabase.COL_DESCRIPTION));
+        Toast.makeText(getActivity(), desc, Toast.LENGTH_LONG).show();
     }
 }

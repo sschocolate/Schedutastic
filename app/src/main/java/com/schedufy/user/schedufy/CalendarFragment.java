@@ -38,9 +38,8 @@ public class CalendarFragment extends SherlockFragment {
              */
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                String cutYear = String.valueOf(year).substring(2, 4);
                 month = month + 1;
-                String newDate = month + "/" + dayOfMonth + "/" + cutYear;
+                String newDate = year + "-" + month + "-" + dayOfMonth;
                 Log.d("NEW_DATE", newDate);
                 Intent addEvent = new Intent(getActivity(), AddEventActivity.class);
                 addEvent.putExtra("DateFromCalendar", newDate);

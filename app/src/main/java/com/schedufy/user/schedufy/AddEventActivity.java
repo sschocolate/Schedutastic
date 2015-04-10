@@ -3,7 +3,6 @@ package com.schedufy.user.schedufy;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -148,7 +147,7 @@ public class AddEventActivity extends Activity {
      */
     private void updateDateLabel() {
         EditText date = (EditText) findViewById(R.id.editTextDate);
-        String format = "MM/dd/yy";
+        String format = "yyyy-MM-dd";
         SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.CANADA);
         date.setText(dateFormat.format(mCurrentDate.getTime()));
     }
@@ -158,7 +157,7 @@ public class AddEventActivity extends Activity {
      */
     private void updateTimeLabel() {
         EditText time = (EditText) findViewById(R.id.editTextTime);
-        String format = "HH:mm";
+        String format = "HH:mm:ss";
         SimpleDateFormat timeFormat = new SimpleDateFormat(format, Locale.CANADA);
         time.setText(timeFormat.format(mCurrentTime.getTime()));
     }

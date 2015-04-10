@@ -33,7 +33,6 @@ public class AddEventActivity extends Activity {
     private EditText mEditTime;
     private EditText mEditDescription;
     private EventDatabase mEventHelper;
-    private String dateFromCalendar;
 
     /**
      * Sets the instance members for the four fields and the database.
@@ -55,7 +54,7 @@ public class AddEventActivity extends Activity {
         // field.
         if(extras != null)
         {
-            dateFromCalendar = extras.getString("DateFromCalendar");
+            String dateFromCalendar = extras.getString("DateFromCalendar");
             mEditDate.setText(dateFromCalendar);
         }
 
@@ -121,7 +120,7 @@ public class AddEventActivity extends Activity {
 
     /**
      * Brings up a time picker when user clicks the time field.
-     * @param v
+     * @param v the view
      */
     public void timePickerClick(View v) {
         TimePickerDialog mTimePickerDialog;
@@ -164,7 +163,7 @@ public class AddEventActivity extends Activity {
 
     /**
      * Pulls strings out of EditText fields and puts them into one database record.
-     * @param v
+     * @param v the view
      */
     public void addEventToDatabase(View v) {
         String category = mEditCategory.getText().toString();
@@ -185,7 +184,7 @@ public class AddEventActivity extends Activity {
 
     /**
      * Return to the previous activity.
-     * @param v
+     * @param v the view
      */
     public void leaveEvent(View v) {
         finish();

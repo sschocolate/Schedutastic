@@ -7,25 +7,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
+/**
+ * Calendar fragment displays a calendar that can be clicked. Upon click, it will transfer the
+ * clicked date to the AddEventActivity page.
+ */
 public class CalendarFragment extends SherlockFragment {
 
-    private View view;
-    private Calendar calendar;
-    private CalendarView calendarView;
-
+    /**
+     * View created
+     * @param inflater inflates the view
+     * @param container a container for the view
+     * @param savedInstanceState saved instance from previous open state
+     * @return the instance of the view
+     */
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
-        calendarView = (CalendarView) view.findViewById(R.id.calendarView);
+        CalendarView calendarView = (CalendarView) view.findViewById(R.id.calendarView);
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             /**
